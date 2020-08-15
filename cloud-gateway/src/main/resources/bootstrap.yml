@@ -5,6 +5,16 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: cloud-user
+          uri: lb://cloud-user
+          predicates:
+            - Path=/user/**
+          filters:
+            - name: AuthCheckFilter
+            - StripPrefix=1
+
   redis:
     database: 0
     host: 127.0.0.1
@@ -20,3 +30,9 @@ spring:
 
 server:
   port: 8000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
