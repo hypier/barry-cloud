@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: cloud-api
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  redis:
+    database: 0
+    host: 127.0.0.1
+    password: ''
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+    port: 6379
+    timeout: 1200
+
+
+server:
+  port: 8000
