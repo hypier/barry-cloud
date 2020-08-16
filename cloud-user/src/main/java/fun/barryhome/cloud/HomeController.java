@@ -31,6 +31,12 @@ public class HomeController {
         return "User Home !";
     }
 
+
+    @GetMapping(value = "/user/hello")
+    public String userHello() {
+        return "User Home !!";
+    }
+
     @PostMapping(value = "/user")
     public String user() {
         return "Post User Home !";

@@ -35,23 +35,24 @@ public class AuthCheckFilter extends AbstractGatewayFilterFactory {
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
 
+            // 1. 获取token
             String token = request.getHeaders().getFirst("token");
 
-            log.info("AppAuthCheckFilter当前请求的url:{}, method:{}", request.getURI().getPath(), request.getMethodValue());
+            log.info("当前请求的url:{}, method:{}", request.getURI().getPath(), request.getMethodValue());
 
             if (Strings.isEmpty(token)) {
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.setComplete();
             }
 
-            // 是否是已登陆用户
+            // 2. 验证用户是否已登陆
             LoginUser loginUser = this.session.getSession(token);
             if (loginUser == null) {
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.setComplete();
             }
 
-            // 将用户名传递给后端服务
+            // 3. 将用户名传递给后端服务
             ServerWebExchange build;
             try {
                 ServerHttpRequest host = exchange.getRequest().mutate()
