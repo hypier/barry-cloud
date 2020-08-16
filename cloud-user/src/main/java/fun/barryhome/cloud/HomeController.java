@@ -1,7 +1,7 @@
 package fun.barryhome.cloud;
 
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +25,16 @@ public class HomeController {
         return String.format("userName: %s, realName: %s", userName, realName);
     }
 
+
+    @GetMapping(value = "/hello")
+    public String hello() {
+        return "User Home !";
+    }
+
+    @PostMapping(value = "/user")
+    public String user() {
+        return "Post User Home !";
+    }
 
 }
 
