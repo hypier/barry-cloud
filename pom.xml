@@ -9,6 +9,7 @@
     <modules>
         <module>cloud-gateway</module>
         <module>cloud-user</module>
+        <module>cloud-admin</module>
     </modules>
     <name>cloud</name>
     <description>Demo project for Spring Cloud</description>
@@ -21,6 +22,7 @@
         <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
         <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
+        <spring-boot-admin.version>2.2.3</spring-boot-admin.version>
     </properties>
 
     <dependencies>
@@ -83,6 +85,13 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>aliyun-spring-boot-dependencies</artifactId>
                 <version>${aliyun-spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring-boot-admin.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

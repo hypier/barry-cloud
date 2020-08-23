@@ -1,13 +1,10 @@
 spring:
   application:
-    name: cloud-user
+    name: boot-admin
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
-
-server:
-  port: 8001
+        server-addr: 127.0.0.1:8848   # nacos服务器地址
 
 management:
   endpoints:
@@ -18,6 +15,8 @@ management:
     health:
       show-details: ALWAYS
 
+server:
+  port: 9000
 
 logging:
   file:

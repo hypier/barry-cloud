@@ -36,4 +36,12 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+logging:
+  file:
+    name: target/${spring.application.name}.log
