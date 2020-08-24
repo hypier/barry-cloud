@@ -25,15 +25,15 @@ public class PermissionRepositoryImpl implements PermissionRepository {
                 .name("home")
                 .build());
         list.add(Permission.builder()
-                .uri("/hello")
+                .uri("/user/hello")
                 .method("GET")
                 .name("hello")
                 .build());
 
         list.add(Permission.builder()
-                .uri("/query")
-                .method("GET")
-                .name("query")
+                .uri("/user/user")
+                .method("POST")
+                .name("user")
                 .build());
 
         return list;
@@ -45,15 +45,15 @@ public class PermissionRepositoryImpl implements PermissionRepository {
         List<Permission> list = new ArrayList<>();
 
         list.add(Permission.builder()
-                .uri("/hello")
+                .uri("/user/hello")
                 .method("GET")
                 .name("hello")
                 .build());
 
         list.add(Permission.builder()
-                .uri("/query")
-                .method("GET")
-                .name("query")
+                .uri("/user/user")
+                .method("POST")
+                .name("user")
                 .build());
 
         return list;
