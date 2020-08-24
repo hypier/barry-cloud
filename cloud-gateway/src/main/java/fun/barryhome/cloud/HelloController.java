@@ -1,5 +1,6 @@
 package fun.barryhome.cloud;
 
+import fun.barryhome.cloud.auth.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

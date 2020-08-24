@@ -1,6 +1,7 @@
-package fun.barryhome.cloud;
+package fun.barryhome.cloud.auth;
 
 import com.alibaba.fastjson.JSON;
+import fun.barryhome.cloud.LoginUser;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -27,7 +28,7 @@ public class Session {
      * @param loginUser
      */
     public void saveSession(LoginUser loginUser) {
-        String key = String.format("login:user:%s", loginUser.userToken);
+        String key = String.format("login:user:%s", loginUser.getUserToken());
 
         redisTemplate.opsForValue().set(key, JSON.toJSONString(loginUser),
                 expireTime, TimeUnit.SECONDS);

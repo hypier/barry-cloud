@@ -1,5 +1,6 @@
-package fun.barryhome.cloud;
+package fun.barryhome.cloud.auth;
 
+import fun.barryhome.cloud.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +57,9 @@ public class AuthCheckFilter extends AbstractGatewayFilterFactory {
             ServerWebExchange build;
             try {
                 ServerHttpRequest host = exchange.getRequest().mutate()
-                        .header("X-User-Name", loginUser.userName)
+                        .header("X-User-Name", loginUser.getUserName())
                         // 中文字符需要编码
-                        .header("X-Real-Name", URLEncoder.encode(loginUser.realName, "utf-8"))
+                        .header("X-Real-Name", URLEncoder.encode(loginUser.getRealName(), "utf-8"))
                         .build();
                 build = exchange.mutate().request(host).build();
             } catch (UnsupportedEncodingException e) {
