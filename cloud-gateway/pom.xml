@@ -23,6 +23,7 @@
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

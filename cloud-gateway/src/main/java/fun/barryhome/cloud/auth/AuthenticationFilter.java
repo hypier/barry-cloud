@@ -1,11 +1,13 @@
 package fun.barryhome.cloud.auth;
 
-import fun.barryhome.cloud.LoginUser;
+import fun.barryhome.cloud.dto.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -19,12 +21,12 @@ import java.net.URLEncoder;
  * Created on 2020/8/15 9:35 下午
  *
  * @author barry
- * Description:
+ * Description: 身份认证
  */
 
 @Slf4j
 @Component
-public class AuthCheckFilter extends AbstractGatewayFilterFactory {
+public class AuthenticationFilter extends AbstractGatewayFilterFactory implements Ordered {
 
     @Autowired
     private Session session;
@@ -68,6 +70,10 @@ public class AuthCheckFilter extends AbstractGatewayFilterFactory {
 
             return chain.filter(build);
         };
+    }
 
+    @Override
+    public int getOrder() {
+        return 10;
     }
 }

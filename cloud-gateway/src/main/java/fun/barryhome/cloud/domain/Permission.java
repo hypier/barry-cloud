@@ -1,14 +1,12 @@
-package fun.barryhome.cloud;
+package fun.barryhome.cloud.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 /**
- * Created on 2020/8/15 4:45 下午
+ * Created on 2020/8/24 9:42 上午
  *
  * @author barry
  * Description:
@@ -17,9 +15,8 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginUser {
-    String userName;
-    String realName;
-    String userToken;
-    Date loginTime;
+public class Permission {
+    private String name;
+    private String uri;
+    private String method;
 }

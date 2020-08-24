@@ -1,14 +1,13 @@
-package fun.barryhome.cloud;
+package fun.barryhome.cloud.controller;
 
+import fun.barryhome.cloud.application.UserManager;
 import fun.barryhome.cloud.auth.Session;
+import fun.barryhome.cloud.dto.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
-import java.util.UUID;
 
 /**
  * Created on 2019-07-29 18:25
@@ -19,6 +18,8 @@ import java.util.UUID;
 @RestController
 public class HelloController {
 
+    @Autowired
+    private UserManager userManager;
     @Autowired
     private Session session;
 
@@ -34,30 +35,7 @@ public class HelloController {
 
     @PostMapping(path = "/login")
     public LoginUser login(@RequestParam String userName, @RequestParam String password) {
-        return checkUser(userName, password);
-    }
-
-    /**
-     * 验证
-     *
-     * @param userName
-     * @param password
-     * @return
-     */
-    private LoginUser checkUser(String userName, String password) {
-        if (!"admin".equals(userName) && !"123456".equals(password)) {
-            throw new RuntimeException("用户名或密码错误");
-        }
-
-        String token = UUID.randomUUID().toString();
-        LoginUser loginUser = new LoginUser();
-        loginUser.setUserName("admin");
-        loginUser.setRealName("管理员");
-        loginUser.setLoginTime(new Date());
-        loginUser.setUserToken(token);
-
-        session.saveSession(loginUser);
-        return loginUser;
+        return userManager.login(userName, password);
     }
 
 

@@ -12,8 +12,10 @@ spring:
           predicates:
             - Path=/user/**   # 路由地址
           filters:
-            - name: AuthCheckFilter
+            - name: AuthenticationFilter
+            - name: AuthorizationFilter
             - StripPrefix=1 # 去掉前缀
+
 
   redis:
     database: 0
