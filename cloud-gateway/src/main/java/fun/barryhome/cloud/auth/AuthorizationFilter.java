@@ -16,11 +16,11 @@ import java.util.Objects;
  * Created on 2020/8/24 9:31 上午
  *
  * @author barry
- * Description: 授权
+ * Description: 鉴权
  */
 @Slf4j
 @Component
-public class AuthorizationFilter extends AbstractGatewayFilterFactory implements Ordered {
+public class AuthorizationFilter extends AbstractGatewayFilterFactory {
 
     @Autowired
     private Session session;
@@ -35,7 +35,7 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory implements
             String uri = request.getURI().getPath();
             String method = request.getMethodValue();
 
-            // 从AuthenticationFilter中获取userName
+            // 1.从AuthenticationFilter中获取userName
             String key = "X-User-Name";
             if (!request.getHeaders().containsKey(key)) {
                 response.setStatusCode(HttpStatus.FORBIDDEN);
@@ -44,7 +44,7 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory implements
 
             String userName = Objects.requireNonNull(request.getHeaders().get(key)).get(0);
 
-            // 验证权限
+            // 2.验证权限
             if (!session.checkPermissions(userName, uri, method)) {
                 log.info("用户：{}, 没有权限", userName);
                 response.setStatusCode(HttpStatus.FORBIDDEN);
@@ -53,10 +53,5 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory implements
 
             return chain.filter(exchange);
         };
-    }
-
-    @Override
-    public int getOrder() {
-        return 20;
     }
 }

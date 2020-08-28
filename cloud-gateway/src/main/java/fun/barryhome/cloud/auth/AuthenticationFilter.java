@@ -26,7 +26,7 @@ import java.net.URLEncoder;
 
 @Slf4j
 @Component
-public class AuthenticationFilter extends AbstractGatewayFilterFactory implements Ordered {
+public class AuthenticationFilter extends AbstractGatewayFilterFactory {
 
     @Autowired
     private Session session;
@@ -70,10 +70,5 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory implement
 
             return chain.filter(build);
         };
-    }
-
-    @Override
-    public int getOrder() {
-        return 10;
     }
 }
