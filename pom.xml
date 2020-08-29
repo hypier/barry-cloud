@@ -10,6 +10,7 @@
         <module>cloud-gateway</module>
         <module>cloud-user</module>
         <module>cloud-admin</module>
+        <module>cloud-mq</module>
     </modules>
     <name>cloud</name>
     <description>Demo project for Spring Cloud</description>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <rabbit:queue name="login-user-logined">
+        <rabbit:queue-arguments>
+            <!--死信的交换机-->
+            <entry key="x-dead-letter-exchange" value="login_barryhome_fun"/>
+            <!--死信发送的路由-->
+            <entry key="x-dead-letter-routing-key" value="login.user.login.dlq"/>
+        </rabbit:queue-arguments>
+    </rabbit:queue>
+    <rabbit:queue name="login-user-logined-dlq"/>
+
+    <rabbit:topic-exchange name="login_barryhome_fun">
+        <rabbit:bindings>
+            <rabbit:binding queue="login-user-logined" pattern="login.user.logined"/>
+            <rabbit:binding queue="login-user-logined-dlq" pattern="login.user.login.dlq"/>
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+</beans>
