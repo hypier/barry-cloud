@@ -120,7 +120,7 @@ public class LoginUser implements Serializable {
 ```
 
 这里需要注意的是默认情况下消息的转换器为`SimpleMessageConverter`只能解析**string**和**byte**，故传递的消息对象必须是可序列化的，实现`Serializable`接口
-```
+```java
 SimpleMessageConverter only supports String, byte[] and Serializable payloads, received: fun.barryhome.cloud.dto.LoginUser
 ```
 
@@ -139,7 +139,7 @@ public class ReceiverMessage {
 `@RabbitListener(queues = "login-user-logined")`：用于监听名为**login-user-logined** 队列中的消息
 
 ### 5. 自动创建Queue
-```
+```java
 @SpringBootApplication
 @ImportResource(value = "classpath:rabbitmq-spring.xml")
 public class MQApplication {
@@ -150,7 +150,7 @@ public class MQApplication {
 ```
 
 在没有导入xml且MQ服务器上没有列队的情况下，会导致找不到相关queue的错误
-```
+``` java
 channel error; protocol method: #method<channel.close>(reply-code=404, reply-text=NOT_FOUND - no queue 'login-user-logined' in vhost '/', class-id=50, method-id=10)
 ```
 而导入之后将`自动创建` **exchange**和**queue**
@@ -166,7 +166,7 @@ channel error; protocol method: #method<channel.close>(reply-code=404, reply-tex
 
 如果想遇到消息消费报错重试几次就舍弃，从而不影响后续消息的消费，如何实现呢？
 
-```
+```yml
 spring:
   rabbitmq:
     host: localhost
@@ -212,7 +212,7 @@ spring:
 
 
 ### 1. 修改**rabbitmq-spring.xml**
-```
+```xml
 <!--接收消息的队列名-->
 <rabbit:queue name="login-user-logined">
     <rabbit:queue-arguments>
@@ -255,13 +255,13 @@ spring:
 延时队列除了可以做一般的延时处理外，还可以当作单个job的定时任务处理，比起一般通过定时器去轮询的方式更优雅。
 
 ### 1. 修改rabbitmq-spring.xml
-```
+```xml
 <rabbit:topic-exchange name="login_barryhome_fun" delayed="true">
 ```
 
 初次配置时，如果报以下错误，则是服务器不支持此命令，需要安装插件
 
-```
+```java
 Channel shutdown: connection error; protocol method: #method<connection.close>(reply-code=503, reply-text=COMMAND_INVALID - unknown exchange type 'x-delayed-message', class-id=40, method-id=10)
 ```
 
@@ -272,12 +272,12 @@ Channel shutdown: connection error; protocol method: #method<connection.close>(r
 2) 上传插件到docker容器中/plugins
 `docker ps` 查询rabbitmq的 **CONTAINER ID**
 ![](https://oscimg.oschina.net/oscnet/up-057ee4c45e643398009578d3a3341e01875.JPEG)
-```
+```shell
 docker cp rabbitmq_delayed_message_exchange-3.8.0.ez 2c248563a2b0:/plugins
 ```
 
 3) 进入docker容器内部
-```
+```shell
 docker exec -it 2c248563a2b0 /bin/bash
 ```
 
@@ -293,7 +293,7 @@ rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 ![](https://oscimg.oschina.net/oscnet/up-c1d4d81b838f31b7f842f8b3f80a8180576.png)
 
 ### 3. 发送延时消息
-```
+``` java
 @GetMapping("/sendDelay")
 public LoginUser SendDelayLoginSucceedMessage() {
     LoginUser loginUser = getLoginUser("succeed");
