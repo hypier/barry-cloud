@@ -11,9 +11,9 @@ import org.springframework.context.annotation.ImportResource;
  * @author barry
  * Description:
  */
-@ImportResource(value = "classpath:rabbitmq-spring.xml")
 @EnableDiscoveryClient
 @SpringBootApplication
+@ImportResource(value = "classpath:rabbitmq-spring.xml")
 public class MQApplication {
 
     public static void main(String[] args) {

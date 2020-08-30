@@ -11,6 +11,15 @@ spring:
     virtual-host: /
     username: admin
     password: admin
+    listener:
+      simple:
+        concurrency: 5
+        prefetch: 10
+        retry:
+          enabled: true   # 允许消息消费失败的重试
+          max-attempts: 3   # 消息最多消费次数3次
+          initial-interval: 2000    # 消息多次消费的间隔2秒
+
 
 
 

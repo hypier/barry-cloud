@@ -14,7 +14,11 @@ import org.springframework.stereotype.Component;
 public class ReceiverMessage {
 
     @RabbitListener(queues = "login-user-logined")
-    public void loginSuccess(LoginUser loginUser) {
-        System.out.println(loginUser);
+    public void receiveLoginMessage(LoginUser loginUser) {
+        if ("failed".equals(loginUser.getStatus())) {
+            throw new RuntimeException("error");
+        }
+
+        System.err.println(loginUser);
     }
 }

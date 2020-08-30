@@ -2,6 +2,7 @@ package fun.barryhome.cloud.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,9 +16,10 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginUser {
+public class LoginUser implements Serializable {
     String userName;
     String realName;
     String userToken;
     Date loginTime;
+    String status;
 }

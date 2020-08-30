@@ -3,8 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
 
+    <!--接收消息的队列名-->
     <rabbit:queue name="login-user-logined">
         <rabbit:queue-arguments>
+            <entry key="x-message-ttl" value="10000" value-type="java.lang.Long"/>
             <!--死信的交换机-->
             <entry key="x-dead-letter-exchange" value="login_barryhome_fun"/>
             <!--死信发送的路由-->
@@ -13,8 +15,10 @@
     </rabbit:queue>
     <rabbit:queue name="login-user-logined-dlq"/>
 
-    <rabbit:topic-exchange name="login_barryhome_fun">
+    <!--申明exchange的名称与类型-->
+    <rabbit:topic-exchange name="login_barryhome_fun" delayed="true">
         <rabbit:bindings>
+            <!--queue与exchange的绑定和匹配路由-->
             <rabbit:binding queue="login-user-logined" pattern="login.user.logined"/>
             <rabbit:binding queue="login-user-logined-dlq" pattern="login.user.login.dlq"/>
         </rabbit:bindings>
