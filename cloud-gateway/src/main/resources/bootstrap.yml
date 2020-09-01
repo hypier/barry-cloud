@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cloud-api  #服务名
+    name: cloud-gateway  #服务名
   cloud:
     nacos:
       discovery:
@@ -27,6 +27,9 @@ spring:
       min-idle: 0
     port: 6379
     timeout: 1200
+
+  main:
+    allow-bean-definition-overriding: true
 
 server:
   port: 8000
