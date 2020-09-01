@@ -16,7 +16,6 @@ spring:
             - name: AuthorizationFilter   # 用户鉴权
             - StripPrefix=1 # 去掉前缀
 
-
   redis:
     database: 0
     host: 127.0.0.1
@@ -28,7 +27,6 @@ spring:
       min-idle: 0
     port: 6379
     timeout: 1200
-
 
 server:
   port: 8000
@@ -43,6 +41,12 @@ management:
     health:
       show-details: ALWAYS
 
+dubbo:
+  cloud:
+    subscribed-services: cloud-user
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
 
 logging:
   file:

@@ -6,6 +6,7 @@ import fun.barryhome.cloud.domain.user.User;
 import fun.barryhome.cloud.domain.user.UserService;
 import fun.barryhome.cloud.dto.LoginUser;
 import fun.barryhome.cloud.infrastructure.permission.PermissionRepository;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ import java.util.UUID;
 @Component
 public class UserManager {
 
-    @Autowired
+    @Reference
     private UserService userService;
 
     @Autowired

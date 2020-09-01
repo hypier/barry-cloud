@@ -1,8 +1,8 @@
 package fun.barryhome.cloud.domain.user;
 
 import fun.barryhome.cloud.infrastructure.user.UserRepository;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * Created on 2020/8/24 11:05 上午
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @author barry
  * Description:
  */
-@Service
+@Service(protocol = "dubbo")
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
