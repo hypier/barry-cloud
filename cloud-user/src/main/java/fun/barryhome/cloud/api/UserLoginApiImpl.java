@@ -3,7 +3,7 @@ package fun.barryhome.cloud.api;
 import fun.barryhome.cloud.convertor.UserConvertor;
 import fun.barryhome.cloud.domain.user.User;
 import fun.barryhome.cloud.domain.user.UserService;
-import fun.barryhome.cloud.api.user.UserApi;
+import fun.barryhome.cloud.api.user.UserLoginApi;
 import fun.barryhome.cloud.api.user.UserDTO;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Description:
  */
 @Service
-public class UserApiImpl implements UserApi {
+public class UserLoginApiImpl implements UserLoginApi {
 
     @Autowired
     private UserService userService;

@@ -1,4 +1,4 @@
-package fun.barryhome.cloud.domain;
+package fun.barryhome.cloud.domain.permission;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

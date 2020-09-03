@@ -1,6 +1,8 @@
-package fun.barryhome.cloud.infrastructure.permission;
+package fun.barryhome.cloud.infrastructure.repository.permission;
 
-import fun.barryhome.cloud.domain.Permission;
+
+
+import fun.barryhome.cloud.domain.permission.Permission;
 
 import java.util.List;
 

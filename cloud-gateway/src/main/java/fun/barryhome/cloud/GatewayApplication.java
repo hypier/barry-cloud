@@ -1,7 +1,8 @@
 package fun.barryhome.cloud;
 
+import fun.barryhome.cloud.api.permission.PermissionApi;
 import fun.barryhome.cloud.auth.Session;
-import fun.barryhome.cloud.infrastructure.permission.PermissionRepository;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,14 +25,14 @@ public class GatewayApplication implements CommandLineRunner {
         SpringApplication.run(GatewayApplication.class, args);
     }
 
-    @Autowired
-    private PermissionRepository permissionRepository;
+    @Reference
+    private PermissionApi permissionApi;
     @Autowired
     private Session session;
 
     @Override
     public void run(String... args) throws Exception {
         // 缓存权限列表
-        session.savePermissions(permissionRepository.findAll());
+        session.savePermissions(permissionApi.findAll());
     }
 }

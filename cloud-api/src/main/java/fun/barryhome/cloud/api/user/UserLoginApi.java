@@ -6,7 +6,7 @@ package fun.barryhome.cloud.api.user;
  * @author barry
  * Description:
  */
-public interface UserApi {
+public interface UserLoginApi {
 
     /**
      * 检查用户
