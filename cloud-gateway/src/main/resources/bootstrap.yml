@@ -47,6 +47,8 @@ management:
 dubbo:
   cloud:
     subscribed-services: cloud-user
+  consumer:
+    check: false
   registry:
     # 挂载到 Spring Cloud 注册中心
     address: spring-cloud://localhost

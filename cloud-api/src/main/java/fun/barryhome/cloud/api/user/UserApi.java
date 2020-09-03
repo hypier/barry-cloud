@@ -1,4 +1,4 @@
-package fun.barryhome.cloud.domain.user;
+package fun.barryhome.cloud.api.user;
 
 /**
  * Created on 2020/8/24 11:03 上午
@@ -6,7 +6,7 @@ package fun.barryhome.cloud.domain.user;
  * @author barry
  * Description:
  */
-public interface UserService {
+public interface UserApi {
 
     /**
      * 检查用户
@@ -14,5 +14,5 @@ public interface UserService {
      * @param password
      * @return
      */
-    User checkUser(String userName, String password);
+    UserDTO checkUser(String userName, String password);
 }

@@ -22,7 +22,7 @@ management:
 
 dubbo:
   scan:
-    base-packages: fun.barryhome.cloud.domain   #指定 Dubbo 服务实现类的扫描基准包
+    base-packages: fun.barryhome.cloud.api   #指定 Dubbo 服务实现类的扫描基准包
   protocols:
     dubbo:
       name: dubbo   #Dubbo 服务暴露的协议配置，其中子属性 name 为协议名称，port 为协议端口（ -1 表示自增端口，从 20880 开始）

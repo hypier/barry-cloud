@@ -1,9 +1,11 @@
-package fun.barryhome.cloud.domain.user;
+package fun.barryhome.cloud.api.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * Created on 2020/8/24 10:57 上午
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserDTO implements Serializable {
     String userName;
     String realName;
     String password;

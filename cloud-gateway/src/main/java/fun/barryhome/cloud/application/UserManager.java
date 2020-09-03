@@ -2,10 +2,10 @@ package fun.barryhome.cloud.application;
 
 import fun.barryhome.cloud.auth.Session;
 import fun.barryhome.cloud.domain.Permission;
-import fun.barryhome.cloud.domain.user.User;
-import fun.barryhome.cloud.domain.user.UserService;
 import fun.barryhome.cloud.dto.LoginUser;
 import fun.barryhome.cloud.infrastructure.permission.PermissionRepository;
+import fun.barryhome.cloud.api.user.UserApi;
+import fun.barryhome.cloud.api.user.UserDTO;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ import java.util.UUID;
 public class UserManager {
 
     @Reference
-    private UserService userService;
+    private UserApi userApi;
 
     @Autowired
     private PermissionRepository permissionRepository;
@@ -40,7 +40,7 @@ public class UserManager {
      */
     public LoginUser login(String userName, String password){
         // 检查密码
-        User user = userService.checkUser(userName, password);
+        UserDTO user = userApi.checkUser(userName, password);
 
         LoginUser loginUser = LoginUser.builder()
                 .userName(userName)
