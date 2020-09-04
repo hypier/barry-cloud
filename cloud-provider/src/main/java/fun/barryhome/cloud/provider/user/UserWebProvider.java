@@ -1,6 +1,5 @@
-package fun.barryhome.cloud.repository;
+package fun.barryhome.cloud.provider.user;
 
-import fun.barryhome.cloud.provider.user.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Description:
  */
 @FeignClient(name = "cloud-user")
-public interface UserRepository {
+public interface UserWebProvider {
 
     @GetMapping(value = "/queryUser")
     UserDTO findByUserName(@RequestParam("userName") String userName);

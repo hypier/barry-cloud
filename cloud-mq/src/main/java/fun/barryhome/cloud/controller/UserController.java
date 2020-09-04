@@ -1,8 +1,8 @@
 package fun.barryhome.cloud.controller;
 
 import fun.barryhome.cloud.provider.user.UserDTO;
-import fun.barryhome.cloud.provider.user.UserLoginProvider;
-import fun.barryhome.cloud.repository.UserRepository;
+import fun.barryhome.cloud.provider.user.UserProvider;
+import fun.barryhome.cloud.provider.user.UserWebProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.logging.log4j.util.Strings;
@@ -23,10 +23,10 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 
     @Reference(loadbalance = "leastactive", filter = "activelimit")
-    private UserLoginProvider userLoginProvider;
+    private UserProvider userProvider;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserWebProvider userWebProvider;
 
     /**
      * 已登陆用户
@@ -42,7 +42,7 @@ public class UserController {
             throw new RuntimeException("没有找到用户");
         }
 
-        return userLoginProvider.findByUserName(userName);
+        return userProvider.findByUserName(userName);
     }
 
     /**
@@ -59,6 +59,6 @@ public class UserController {
             throw new RuntimeException("没有找到用户");
         }
 
-        return userRepository.findByUserName(userName);
+        return userWebProvider.findByUserName(userName);
     }
 }

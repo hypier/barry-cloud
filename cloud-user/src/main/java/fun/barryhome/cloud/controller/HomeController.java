@@ -4,10 +4,10 @@ import fun.barryhome.cloud.convertor.UserConvertor;
 import fun.barryhome.cloud.domain.user.User;
 import fun.barryhome.cloud.infrastructure.repository.user.UserRepository;
 import fun.barryhome.cloud.provider.user.UserDTO;
+import fun.barryhome.cloud.provider.user.UserWebProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ import java.net.URLDecoder;
  * Description:
  */
 @RestController
-public class HomeController {
+public class HomeController implements UserWebProvider {
 
     @Autowired
     private UserRepository userRepository;
@@ -41,15 +41,15 @@ public class HomeController {
     }
 
 
-    @GetMapping(value = "/queryUser")
-    public UserDTO findByUserName(@RequestParam("userName") String userName) {
-        User user = userRepository.findByUserName(userName);
-        return UserConvertor.toDTO(user);
-    }
-
     @PostMapping(value = "/user")
     public String user() {
         return "Post User Home !";
+    }
+
+    @Override
+    public UserDTO findByUserName(String userName) {
+        User user = userRepository.findByUserName(userName);
+        return UserConvertor.toDTO(user);
     }
 
 }

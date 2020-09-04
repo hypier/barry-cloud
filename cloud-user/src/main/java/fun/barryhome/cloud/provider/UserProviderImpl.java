@@ -5,7 +5,7 @@ import fun.barryhome.cloud.domain.user.User;
 import fun.barryhome.cloud.domain.user.UserService;
 import fun.barryhome.cloud.infrastructure.repository.user.UserRepository;
 import fun.barryhome.cloud.provider.user.UserDTO;
-import fun.barryhome.cloud.provider.user.UserLoginProvider;
+import fun.barryhome.cloud.provider.user.UserProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Slf4j
 @Service
-public class UserLoginProviderImpl implements UserLoginProvider {
+public class UserProviderImpl implements UserProvider {
 
     @Autowired
     private UserService userService;
