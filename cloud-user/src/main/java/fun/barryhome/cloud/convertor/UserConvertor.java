@@ -2,7 +2,7 @@ package fun.barryhome.cloud.convertor;
 
 
 import fun.barryhome.cloud.domain.user.User;
-import fun.barryhome.cloud.api.user.UserDTO;
+import fun.barryhome.cloud.provider.user.UserDTO;
 import org.springframework.beans.BeanUtils;
 
 /**

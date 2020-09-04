@@ -1,4 +1,4 @@
-package fun.barryhome.cloud.api.user;
+package fun.barryhome.cloud.provider.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package fun.barryhome.cloud.api.permission;
+package fun.barryhome.cloud.provider.permission;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * @author barry
  * Description:
  */
-public interface PermissionApi {
+public interface PermissionProvider {
     /**
      * 查询所有权限
      * @return

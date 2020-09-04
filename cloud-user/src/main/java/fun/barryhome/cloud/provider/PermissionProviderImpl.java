@@ -1,7 +1,7 @@
-package fun.barryhome.cloud.api;
+package fun.barryhome.cloud.provider;
 
-import fun.barryhome.cloud.api.permission.PermissionApi;
-import fun.barryhome.cloud.api.permission.PermissionDTO;
+import fun.barryhome.cloud.provider.permission.PermissionProvider;
+import fun.barryhome.cloud.provider.permission.PermissionDTO;
 import fun.barryhome.cloud.convertor.PermissionConvertor;
 import fun.barryhome.cloud.domain.permission.Permission;
 import fun.barryhome.cloud.infrastructure.repository.permission.PermissionRepository;
@@ -17,7 +17,7 @@ import java.util.List;
  * Description:
  */
 @Service
-public class PermissionApiImpl implements PermissionApi {
+public class PermissionProviderImpl implements PermissionProvider {
 
     @Autowired
     private PermissionRepository permissionRepository;

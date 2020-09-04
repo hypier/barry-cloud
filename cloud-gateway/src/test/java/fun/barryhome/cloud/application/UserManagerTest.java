@@ -1,8 +1,7 @@
 package fun.barryhome.cloud.application;
 
-import fun.barryhome.cloud.api.user.UserDTO;
-import fun.barryhome.cloud.api.user.UserLoginApi;
-import fun.barryhome.cloud.dto.LoginUser;
+import fun.barryhome.cloud.provider.user.UserDTO;
+import fun.barryhome.cloud.provider.user.UserLoginProvider;
 import org.apache.dubbo.config.annotation.Reference;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -20,11 +19,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 class UserManagerTest {
 
     @Reference
-    private UserLoginApi userLoginApi;
+    private UserLoginProvider userLoginProvider;
 
     @Test
     void login() {
-        UserDTO admin = userLoginApi.checkUser("admin", "123456");
+        UserDTO admin = userLoginProvider.checkUser("admin", "123456");
 
         System.out.println(admin);
     }

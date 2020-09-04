@@ -1,4 +1,4 @@
-package fun.barryhome.cloud.api.permission;
+package fun.barryhome.cloud.provider.permission;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package fun.barryhome.cloud.api.user;
+package fun.barryhome.cloud.provider.user;
 
 /**
  * Created on 2020/8/24 11:03 上午
@@ -6,7 +6,7 @@ package fun.barryhome.cloud.api.user;
  * @author barry
  * Description:
  */
-public interface UserLoginApi {
+public interface UserLoginProvider {
 
     /**
      * 检查用户

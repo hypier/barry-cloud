@@ -1,6 +1,6 @@
 package fun.barryhome.cloud.auth;
 
-import fun.barryhome.cloud.api.permission.PermissionApi;
+import fun.barryhome.cloud.provider.permission.PermissionProvider;
 import org.apache.dubbo.config.annotation.Reference;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -20,12 +20,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 class SessionTest {
 
     @Reference
-    private PermissionApi permissionApi;
+    private PermissionProvider permissionProvider;
     @Autowired
     private Session session;
 
     @Test
     void savePermissions() {
-        session.savePermissions(permissionApi.findAll());
+        session.savePermissions(permissionProvider.findAll());
     }
 }

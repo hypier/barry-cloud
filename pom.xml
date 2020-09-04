@@ -11,7 +11,7 @@
         <module>cloud-user</module>
         <module>cloud-admin</module>
         <module>cloud-mq</module>
-        <module>cloud-api</module>
+        <module>cloud-provider</module>
     </modules>
     <name>cloud</name>
     <description>Demo project for Spring Cloud</description>

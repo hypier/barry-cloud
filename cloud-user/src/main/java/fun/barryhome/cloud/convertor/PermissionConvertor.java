@@ -1,6 +1,6 @@
 package fun.barryhome.cloud.convertor;
 
-import fun.barryhome.cloud.api.permission.PermissionDTO;
+import fun.barryhome.cloud.provider.permission.PermissionDTO;
 import fun.barryhome.cloud.domain.permission.Permission;
 import org.springframework.beans.BeanUtils;
 

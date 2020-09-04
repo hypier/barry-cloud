@@ -1,9 +1,9 @@
 package fun.barryhome.cloud.controller;
 
-import fun.barryhome.cloud.api.permission.PermissionApi;
-import fun.barryhome.cloud.api.permission.PermissionDTO;
-import fun.barryhome.cloud.api.user.UserDTO;
-import fun.barryhome.cloud.api.user.UserLoginApi;
+import fun.barryhome.cloud.provider.permission.PermissionProvider;
+import fun.barryhome.cloud.provider.permission.PermissionDTO;
+import fun.barryhome.cloud.provider.user.UserDTO;
+import fun.barryhome.cloud.provider.user.UserLoginProvider;
 import fun.barryhome.cloud.auth.Session;
 import fun.barryhome.cloud.dto.LoginUser;
 import org.apache.dubbo.config.annotation.Reference;
@@ -30,10 +30,10 @@ public class HelloController {
     private Session session;
 
     @Reference
-    private UserLoginApi userLoginApi;
+    private UserLoginProvider userLoginProvider;
 
     @Reference
-    private PermissionApi permissionApi;
+    private PermissionProvider permissionProvider;
 
 
     @GetMapping(value = "/hello")
@@ -59,7 +59,7 @@ public class HelloController {
      */
     private LoginUser userLogin(String userName, String password){
         // 检查密码
-        UserDTO user = userLoginApi.checkUser(userName, password);
+        UserDTO user = userLoginProvider.checkUser(userName, password);
 
         LoginUser loginUser = LoginUser.builder()
                 .userName(userName)
@@ -72,7 +72,7 @@ public class HelloController {
         session.saveSession(loginUser);
 
         // 查询权限
-        List<PermissionDTO> permissions = permissionApi.findByUserName(userName);
+        List<PermissionDTO> permissions = permissionProvider.findByUserName(userName);
         // 保存用户权限
         session.saveUserPermissions(userName, permissions);
 
