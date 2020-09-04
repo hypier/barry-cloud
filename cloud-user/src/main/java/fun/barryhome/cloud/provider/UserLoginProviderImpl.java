@@ -35,7 +35,6 @@ public class UserLoginProviderImpl implements UserLoginProvider {
      */
     @Override
     public UserDTO checkUser(String userName, String password) {
-        log.error("cloud-user:{}", "checkUser");
 
         User user = userService.checkUser(userName, password);
         return UserConvertor.toDTO(user);
@@ -49,7 +48,6 @@ public class UserLoginProviderImpl implements UserLoginProvider {
      */
     @Override
     public UserDTO findByUserName(String userName) {
-        log.error("cloud-user:{}", "findByUserName");
 
         User user = userRepository.findByUserName(userName);
         return UserConvertor.toDTO(user);

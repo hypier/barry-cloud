@@ -2,9 +2,11 @@ package fun.barryhome.cloud.controller;
 
 import fun.barryhome.cloud.provider.user.UserDTO;
 import fun.barryhome.cloud.provider.user.UserLoginProvider;
+import fun.barryhome.cloud.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,9 @@ public class UserController {
     @Reference(loadbalance = "leastactive", filter = "activelimit")
     private UserLoginProvider userLoginProvider;
 
+    @Autowired
+    private UserRepository userRepository;
+
     /**
      * 已登陆用户
      *
@@ -31,7 +36,6 @@ public class UserController {
      */
     @GetMapping(value = "/sessionUser")
     public UserDTO sessionUser(HttpServletRequest request) {
-        log.error("cloud-mq:{}", "sessionUser");
 
         String userName = request.getHeader("X-User-Name");
         if (Strings.isEmpty(userName)) {
@@ -39,5 +43,22 @@ public class UserController {
         }
 
         return userLoginProvider.findByUserName(userName);
+    }
+
+    /**
+     * 已登陆用户
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping(value = "/sessionUserWeb")
+    public UserDTO sessionUserWeb(HttpServletRequest request) {
+
+        String userName = request.getHeader("X-User-Name");
+        if (Strings.isEmpty(userName)) {
+            throw new RuntimeException("没有找到用户");
+        }
+
+        return userRepository.findByUserName(userName);
     }
 }
