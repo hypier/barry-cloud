@@ -20,12 +20,17 @@ spring:
           max-attempts: 3   # 消息最多消费次数3次
           initial-interval: 2000    # 消息多次消费的间隔2秒
 
-
-
-
+dubbo:
+  cloud:
+    subscribed-services: cloud-user
+  consumer:
+    check: false
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
 
 server:
-  port: 8002
+  port: 0
 
 # 用于actuator暴露监控指标
 management:
@@ -36,7 +41,6 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-
 
 logging:
   file:

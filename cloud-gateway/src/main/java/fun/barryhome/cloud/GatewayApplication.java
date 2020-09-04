@@ -1,10 +1,5 @@
 package fun.barryhome.cloud;
 
-import fun.barryhome.cloud.provider.permission.PermissionProvider;
-import fun.barryhome.cloud.auth.Session;
-import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -19,20 +14,10 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 @EnableOpenApi
 @EnableDiscoveryClient
 @SpringBootApplication
-public class GatewayApplication implements CommandLineRunner {
+public class GatewayApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }
 
-    @Reference
-    private PermissionProvider permissionProvider;
-    @Autowired
-    private Session session;
-
-    @Override
-    public void run(String... args) throws Exception {
-        // 缓存权限列表
-        session.savePermissions(permissionProvider.findAll());
-    }
 }

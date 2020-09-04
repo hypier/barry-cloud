@@ -15,4 +15,11 @@ public interface UserLoginProvider {
      * @return
      */
     UserDTO checkUser(String userName, String password);
+
+    /**
+     * 查询用户
+     * @param userName
+     * @return
+     */
+    UserDTO findByUserName(String userName);
 }

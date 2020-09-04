@@ -1,11 +1,12 @@
 package fun.barryhome.cloud.controller;
 
-import fun.barryhome.cloud.provider.permission.PermissionProvider;
-import fun.barryhome.cloud.provider.permission.PermissionDTO;
-import fun.barryhome.cloud.provider.user.UserDTO;
-import fun.barryhome.cloud.provider.user.UserLoginProvider;
+
 import fun.barryhome.cloud.auth.Session;
 import fun.barryhome.cloud.dto.LoginUser;
+import fun.barryhome.cloud.provider.permission.PermissionDTO;
+import fun.barryhome.cloud.provider.permission.PermissionProvider;
+import fun.barryhome.cloud.provider.user.UserDTO;
+import fun.barryhome.cloud.provider.user.UserLoginProvider;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class HelloController {
     @Autowired
     private Session session;
 
-    @Reference
+    @Reference(loadbalance = "leastactive", retries = 0, filter = "activelimit")
     private UserLoginProvider userLoginProvider;
 
     @Reference
@@ -41,9 +42,9 @@ public class HelloController {
         return "Demo project for Spring Boot !";
     }
 
-    @GetMapping(value = "/query")
-    public LoginUser token(@RequestParam String token) {
-        return session.getSession(token);
+    @GetMapping(value = "/cachePermissions")
+    public void cachePermissions() {
+        session.savePermissions(permissionProvider.findAll());
     }
 
     @PostMapping(path = "/login")

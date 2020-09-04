@@ -3,8 +3,10 @@ package fun.barryhome.cloud.provider;
 import fun.barryhome.cloud.convertor.UserConvertor;
 import fun.barryhome.cloud.domain.user.User;
 import fun.barryhome.cloud.domain.user.UserService;
-import fun.barryhome.cloud.provider.user.UserLoginProvider;
+import fun.barryhome.cloud.infrastructure.repository.user.UserRepository;
 import fun.barryhome.cloud.provider.user.UserDTO;
+import fun.barryhome.cloud.provider.user.UserLoginProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,11 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author barry
  * Description:
  */
+@Slf4j
 @Service
 public class UserLoginProviderImpl implements UserLoginProvider {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * 检查用户
@@ -29,7 +35,23 @@ public class UserLoginProviderImpl implements UserLoginProvider {
      */
     @Override
     public UserDTO checkUser(String userName, String password) {
+        log.error("cloud-user:{}", "checkUser");
+
         User user = userService.checkUser(userName, password);
+        return UserConvertor.toDTO(user);
+    }
+
+    /**
+     * 查询用户
+     *
+     * @param userName
+     * @return
+     */
+    @Override
+    public UserDTO findByUserName(String userName) {
+        log.error("cloud-user:{}", "findByUserName");
+
+        User user = userRepository.findByUserName(userName);
         return UserConvertor.toDTO(user);
     }
 }

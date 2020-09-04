@@ -15,7 +15,14 @@ spring:
             - name: AuthenticationFilter  # 身份认证
             - name: AuthorizationFilter   # 用户鉴权
             - StripPrefix=1 # 去掉前缀
-
+        - id: cloud-mq
+          uri: lb://cloud-mq  # 后端服务名
+          predicates:
+            - Path=/mq/**   # 路由地址
+          filters:
+            - name: AuthenticationFilter  # 身份认证
+            - name: AuthorizationFilter   # 用户鉴权
+            - StripPrefix=1 # 去掉前缀
   redis:
     database: 0
     host: 127.0.0.1
