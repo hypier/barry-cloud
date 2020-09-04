@@ -30,7 +30,7 @@ public class HelloController {
     @Autowired
     private Session session;
 
-    @Reference(loadbalance = "leastactive", retries = 0, filter = "activelimit")
+    @Reference
     private UserProvider userProvider;
 
     @Reference

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class UserController {
 
-    @Reference(loadbalance = "leastactive", filter = "activelimit")
+    @Reference
     private UserProvider userProvider;
 
     @Autowired

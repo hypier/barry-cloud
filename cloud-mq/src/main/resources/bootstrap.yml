@@ -25,6 +25,8 @@ dubbo:
     subscribed-services: cloud-user
   consumer:
     check: false
+    loadbalance: "leastactive"    #最小活跃数负载均衡
+
   registry:
     # 挂载到 Spring Cloud 注册中心
     address: spring-cloud://localhost
