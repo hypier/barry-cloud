@@ -5,6 +5,10 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848   # nacos服务器地址
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8858
+
   rabbitmq:
     host: localhost
     port: 5672
