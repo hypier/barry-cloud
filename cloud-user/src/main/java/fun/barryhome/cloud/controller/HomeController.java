@@ -1,5 +1,11 @@
-package fun.barryhome.cloud;
+package fun.barryhome.cloud.controller;
 
+import fun.barryhome.cloud.convertor.UserConvertor;
+import fun.barryhome.cloud.domain.user.User;
+import fun.barryhome.cloud.infrastructure.repository.user.UserRepository;
+import fun.barryhome.cloud.provider.user.UserDTO;
+import fun.barryhome.cloud.provider.user.UserWebProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +21,10 @@ import java.net.URLDecoder;
  * Description:
  */
 @RestController
-public class HomeController {
+public class HomeController implements UserWebProvider {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping(value = "/home")
     public String home(HttpServletRequest request) throws UnsupportedEncodingException {
@@ -32,14 +41,15 @@ public class HomeController {
     }
 
 
-    @GetMapping(value = "/user/hello")
-    public String userHello() {
-        return "User Home !!";
-    }
-
     @PostMapping(value = "/user")
     public String user() {
         return "Post User Home !";
+    }
+
+    @Override
+    public UserDTO findByUserName(String userName) {
+        User user = userRepository.findByUserName(userName);
+        return UserConvertor.toDTO(user);
     }
 
 }

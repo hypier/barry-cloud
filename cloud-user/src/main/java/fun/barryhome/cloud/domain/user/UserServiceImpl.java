@@ -1,6 +1,7 @@
 package fun.barryhome.cloud.domain.user;
 
-import fun.barryhome.cloud.infrastructure.user.UserRepository;
+
+import fun.barryhome.cloud.infrastructure.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

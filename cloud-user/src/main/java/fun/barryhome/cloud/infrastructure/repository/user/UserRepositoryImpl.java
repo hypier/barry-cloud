@@ -1,4 +1,4 @@
-package fun.barryhome.cloud.infrastructure.user;
+package fun.barryhome.cloud.infrastructure.repository.user;
 
 import fun.barryhome.cloud.domain.user.User;
 import org.springframework.stereotype.Repository;

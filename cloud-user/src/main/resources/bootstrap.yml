@@ -5,9 +5,14 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8858
+  main:
+    allow-bean-definition-overriding: true
 
 server:
-  port: 8001
+  port: 0
 
 management:
   endpoints:
@@ -17,6 +22,18 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+dubbo:
+  scan:
+    base-packages: fun.barryhome.cloud.provider   #指定 Dubbo 服务实现类的扫描基准包
+  protocols:
+    dubbo:
+      name: dubbo   #Dubbo 服务暴露的协议配置，其中子属性 name 为协议名称，port 为协议端口（ -1 表示自增端口，从 20880 开始）
+      port: -1
+
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
 
 
 logging:

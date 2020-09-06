@@ -1,6 +1,7 @@
-package fun.barryhome.cloud.infrastructure.permission;
+package fun.barryhome.cloud.infrastructure.repository.permission;
 
-import fun.barryhome.cloud.domain.Permission;
+
+import fun.barryhome.cloud.domain.permission.Permission;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
