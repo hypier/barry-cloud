@@ -1,0 +1,23 @@
+server:
+  port: 9898
+spring:
+  application:
+    name: cloud-stream
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /
+    username: admin
+    password: admin
+  cloud:
+    stream:
+      bindings:
+        mySender:
+          destination: minestream
+        myReceiver-1:
+          destination: minestream
+          group: stream
+        myReceiver-2:
+          destination: minestream
+          group: stream1
+
