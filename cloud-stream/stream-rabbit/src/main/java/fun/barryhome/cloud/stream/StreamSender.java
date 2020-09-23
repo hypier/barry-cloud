@@ -25,7 +25,7 @@ public class StreamSender {
         sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
                 .setHeader("routingKey", "login.user.succeed")
                 .setHeader("version", "1.0")
-                .setHeader("x-delay", 5000)
+
                 .build());
         return "OK " + date;
     }
@@ -36,6 +36,7 @@ public class StreamSender {
         sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
                 .setHeader("routingKey", "login.user.succeed")
                 .setHeader("version", "2.0")
+                .setHeader("x-delay", 5000)
                 .build());
         return "OK " + date;
     }
