@@ -2,6 +2,7 @@ package fun.barryhome.cloud.stream;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,13 +15,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class StreamReceiver {
 
-    @StreamListener(Receiver.MY_RECEIVER_1)
-    public void receive1(String message) {
-        log.error("StreamReceiver: {}", message);
+    @StreamListener(value = Receiver.MY_RECEIVER_1, condition = "headers['version']=='1.0'")
+    public void receiveSucceed_v1(@Payload String message) {
+        log.error("StreamReceiver v1: {}", message);
+    }
+
+    @StreamListener(value = Receiver.MY_RECEIVER_1, condition = "headers['version']=='2.0'")
+    public void receiveSucceed_v2(String message) {
+        log.error("StreamReceiver v2: {}", message);
     }
 
     @StreamListener(Receiver.MY_RECEIVER_2)
-    public void receive2(String message) {
-        log.error("StreamReceiver1: {}", message);
+    public void receiveFailed(String message) {
+        throw new RuntimeException("error");
     }
 }

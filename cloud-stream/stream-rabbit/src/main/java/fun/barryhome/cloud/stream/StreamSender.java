@@ -20,10 +20,31 @@ public class StreamSender {
     private Sender sender;
 
     @GetMapping("/")
-    public String send() {
+    public String sendSucceed() {
         Date date = new Date();
-        sender.message().send(MessageBuilder.withPayload("Hello World..." + date).build());
+        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
+                .setHeader("routingKey", "login.user.succeed")
+                .setHeader("version", "1.0")
+                .build());
         return "OK " + date;
     }
 
+    @GetMapping("/v2")
+    public String sendHeader() {
+        Date date = new Date();
+        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
+                .setHeader("routingKey", "login.user.succeed")
+                .setHeader("version", "2.0")
+                .build());
+        return "OK " + date;
+    }
+
+    @GetMapping("/failed")
+    public String sendFailed() {
+        Date date = new Date();
+        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
+                .setHeader("routingKey", "login.user.failed")
+                .build());
+        return "OK " + date;
+    }
 }

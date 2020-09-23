@@ -13,11 +13,26 @@ spring:
     stream:
       bindings:
         mySender:
-          destination: minestream
-        myReceiver-1:
-          destination: minestream
-          group: stream
+          destination: login-user
+        myReceiver-1: # 通道名，对应代码中的消费监听组
+          destination: login-user # exchange
+          group: logined-member   # 消费者组, 同组负载消费，不同组共同消费；destination.group 组合为queue名
         myReceiver-2:
-          destination: minestream
-          group: stream1
+          destination: login-user
+          group: user
 
+      rabbit:
+        bindings:
+          mySender:
+            producer:
+              routing-key-expression: headers.routingKey   # 发送端路由key
+
+          myReceiver-1:
+            consumer:
+              binding-routing-key: login.user.succeed   # 消费监听路由表达式
+
+          myReceiver-2:
+            consumer:
+              auto-bind-dlq: true   # 绑定死信队列
+              republish-to-dlq: true  # 重投到死信队列并带有报错信息
+              binding-routing-key: login.user.failed   # 消费监听路由表达式
