@@ -26,10 +26,12 @@ spring:
           mySender:
             producer:
               routing-key-expression: headers.routingKey   # 发送端路由key
+              delayed-exchange: true    # 开启延时队列
 
           myReceiver-1:
             consumer:
               binding-routing-key: login.user.succeed   # 消费监听路由表达式
+              delayed-exchange: true    # 开启延时队列
 
           myReceiver-2:
             consumer:
