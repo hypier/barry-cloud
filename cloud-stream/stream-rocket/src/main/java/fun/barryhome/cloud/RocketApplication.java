@@ -4,7 +4,6 @@ import fun.barryhome.cloud.stream.Receiver;
 import fun.barryhome.cloud.stream.Sender;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 
 /**
@@ -14,11 +13,10 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
  * Description:
  */
 @EnableBinding(value = {Sender.class, Receiver.class})
-@EnableDiscoveryClient
 @SpringBootApplication
-public class StreamApplication {
+public class RocketApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StreamApplication.class, args);
+        SpringApplication.run(RocketApplication.class, args);
     }
 }
 
