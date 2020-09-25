@@ -22,31 +22,8 @@ public class StreamSender {
     @GetMapping("/")
     public String sendSucceed() {
         Date date = new Date();
-        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
-//                .setHeader("routingKey", "login.user.succeed")
-//                .setHeader("version", "1.0")
-
-                .build());
-        return "OK " + date;
+        boolean send = sender.message().send(MessageBuilder.withPayload("Hello World..." + date).build());
+        return send + " " + date;
     }
 
-//    @GetMapping("/v2")
-//    public String sendHeader() {
-//        Date date = new Date();
-//        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
-//                .setHeader("routingKey", "login.user.succeed")
-//                .setHeader("version", "2.0")
-//                .setHeader("x-delay", 5000)
-//                .build());
-//        return "OK " + date;
-//    }
-//
-//    @GetMapping("/failed")
-//    public String sendFailed() {
-//        Date date = new Date();
-//        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
-//                .setHeader("routingKey", "login.user.failed")
-//                .build());
-//        return "OK " + date;
-//    }
 }

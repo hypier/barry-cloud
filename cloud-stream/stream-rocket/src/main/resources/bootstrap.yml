@@ -9,23 +9,12 @@ spring:
         mySender:
           destination: login-user
           content-type: application/json
-#        sender-step-2:
-#          destination: login-user-step-2
 
         myReceiver-1: # 通道名，对应代码中的消费监听组
           destination: login-user # exchange
           group: logined-member   # 消费者组, 同组负载消费，不同组共同消费；destination.group 组合为queue名
-#        myReceiver-2:
-#          destination: login-user
-#          group: user
-
-#        receiver-step-1:
-#          destination: login-user
-#          group: logined-member-step
-#        receiver-step-2:
-#          destination: login-user-step-2
-#          group: logined-member-step
 
       rocketmq:
         binder:
           name-server: 127.0.0.1:9876
+

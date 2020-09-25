@@ -11,12 +11,9 @@ import org.springframework.messaging.MessageChannel;
  */
 public interface Sender {
     String OUTPUT = "mySender";
-//    String OUTPUT_STEP_2 = "sender-step-2";
 
     @Output(OUTPUT)
     MessageChannel message();
-//
-//    @Output(OUTPUT_STEP_2)
-//    MessageChannel message2();
+
 
 }
