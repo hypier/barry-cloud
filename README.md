@@ -13,6 +13,8 @@
 
 [4. SpringCloud轻松集成Dubbo实现RPC调用](/cloud-user)
 
+[5. 使用Spring Cloud Stream玩转RabbitMQ，RocketMQ和Kafka](/cloud-stream)
+
 ---
 
 使用SpringCloud技术栈搭建微服务集群，可以选择的组件比较多，由于有些组件已经闭源或停更，这里主要选用`spring-cloud-alibaba`作为我们的技术栈。
