@@ -14,7 +14,8 @@ spring:
           destination: login-user # exchange
           group: logined-member   # 消费者组, 同组负载消费
 
-      rocketmq:
-        binder:
-          name-server: 127.0.0.1:9876
 
+      kafka:
+        binder:
+          brokers: localhost:9092         #Kafka的消息中间件服务器
+          auto-create-topics: true

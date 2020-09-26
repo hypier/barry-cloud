@@ -9,8 +9,8 @@ import org.springframework.messaging.MessageChannel;
  * @author barry
  * Description: 取得 destination: minestream
  */
-public interface Sender {
-    String OUTPUT = "mySender";
+public interface Source {
+    String OUTPUT = "myOutput";
 
     @Output(OUTPUT)
     MessageChannel message();

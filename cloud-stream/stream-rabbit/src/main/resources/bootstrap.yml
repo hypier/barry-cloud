@@ -12,38 +12,38 @@ spring:
   cloud:
     stream:
       bindings:
-        mySender:
+        myOutput:
           destination: login-user
-        sender-step-2:
+        output-step-2:
           destination: login-user-step-2
 
-        myReceiver-1: # 通道名，对应代码中的消费监听组
+        myInput-1: # 通道名，对应代码中的消费监听组
           destination: login-user # exchange
           group: logined-member   # 消费者组, 同组负载消费，不同组共同消费；destination.group 组合为queue名
-        myReceiver-2:
+        myInput-2:
           destination: login-user
           group: user
 
-        receiver-step-1:
+        input-step-1:
           destination: login-user
           group: logined-member-step
-        receiver-step-2:
+        input-step-2:
           destination: login-user-step-2
           group: logined-member-step
 
       rabbit:
         bindings:
-          mySender:
+          myOutput:
             producer:
               routing-key-expression: headers.routingKey   # 发送端路由key
               delayed-exchange: true    # 开启延时队列
 
-          myReceiver-1:
+          myInput-1:
             consumer:
               binding-routing-key: login.user.succeed   # 消费监听路由表达式
               delayed-exchange: true    # 开启延时队列
 
-          myReceiver-2:
+          myInput-2:
             consumer:
               auto-bind-dlq: true   # 绑定死信队列
               republish-to-dlq: true  # 重投到死信队列并带有报错信息

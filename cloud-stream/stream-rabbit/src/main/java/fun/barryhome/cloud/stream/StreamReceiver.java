@@ -16,32 +16,32 @@ import org.springframework.stereotype.Component;
 @Component
 public class StreamReceiver {
 
-    @StreamListener(value = Receiver.MY_RECEIVER_1, condition = "headers['version']=='1.0'")
+    @StreamListener(value = Sink.MY_INPUT_1, condition = "headers['version']=='1.0'")
     public void receiveSucceed_v1(@Payload String message) {
         String msg = "StreamReceiver v1: " + message;
         log.error(msg);
     }
 
-    @StreamListener(value = Receiver.MY_RECEIVER_1, condition = "headers['version']=='2.0'")
+    @StreamListener(value = Sink.MY_INPUT_1, condition = "headers['version']=='2.0'")
     public void receiveSucceed_v2(String message) {
         log.error("StreamReceiver v2: {}", message);
     }
 
-    @StreamListener(Receiver.MY_RECEIVER_2)
+    @StreamListener(Sink.MY_INPUT_2)
     public void receiveFailed(String message) {
         throw new RuntimeException("error");
     }
 
 
-    @StreamListener(value = Receiver.RECEIVER_STEP_1)
-    @SendTo(Sender.OUTPUT_STEP_2)
+    @StreamListener(value = Sink.INPUT_STEP_1)
+    @SendTo(Source.OUTPUT_STEP_2)
     public String receiveStep_1(String message) {
         String msg = "receiveAndSend-step1:" + message;
         log.error(msg);
         return msg;
     }
 
-    @StreamListener(Receiver.RECEIVER_STEP_2)
+    @StreamListener(Sink.INPUT_STEP_2)
     public void receiveStep_2(String message) {
         log.error("StreamReceiver step2: {}", message);
     }

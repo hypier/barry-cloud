@@ -9,22 +9,22 @@ import org.springframework.messaging.SubscribableChannel;
  * @author barry
  * Description:
  */
-public interface Receiver {
-    String MY_RECEIVER_1 = "myReceiver-1";
-    String MY_RECEIVER_2 = "myReceiver-2";
+public interface Sink {
+    String MY_INPUT_1 = "myInput-1";
+    String MY_INPUT_2 = "myInput-2";
 
-    String RECEIVER_STEP_1 = "receiver-step-1";
-    String RECEIVER_STEP_2 = "receiver-step-2";
+    String INPUT_STEP_1 = "input-step-1";
+    String INPUT_STEP_2 = "input-step-2";
 
-    @Input(MY_RECEIVER_1)
+    @Input(MY_INPUT_1)
     SubscribableChannel sub1();
 
-    @Input(MY_RECEIVER_2)
+    @Input(MY_INPUT_2)
     SubscribableChannel sub2();
 
-    @Input(RECEIVER_STEP_1)
+    @Input(INPUT_STEP_1)
     SubscribableChannel sub3();
 
-    @Input(RECEIVER_STEP_2)
+    @Input(INPUT_STEP_2)
     SubscribableChannel sub4();
 }

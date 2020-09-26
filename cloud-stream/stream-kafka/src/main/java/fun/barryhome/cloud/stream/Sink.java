@@ -9,9 +9,9 @@ import org.springframework.messaging.SubscribableChannel;
  * @author barry
  * Description:
  */
-public interface Receiver {
-    String MY_RECEIVER_1 = "myReceiver-1";
+public interface Sink {
+    String INPUT = "myInput";
 
-    @Input(MY_RECEIVER_1)
+    @Input(INPUT)
     SubscribableChannel sub1();
 }

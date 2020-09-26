@@ -4,6 +4,7 @@ import fun.barryhome.cloud.stream.Sink;
 import fun.barryhome.cloud.stream.Source;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 
 /**
@@ -13,10 +14,11 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
  * Description:
  */
 @EnableBinding(value = {Source.class, Sink.class})
+@EnableDiscoveryClient
 @SpringBootApplication
-public class RocketApplication {
+public class RabbitApplication {
     public static void main(String[] args) {
-        SpringApplication.run(RocketApplication.class, args);
+        SpringApplication.run(RabbitApplication.class, args);
     }
 }
 

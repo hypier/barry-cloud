@@ -17,12 +17,12 @@ import java.util.Date;
 public class StreamSender {
 
     @Autowired
-    private Sender sender;
+    private Source source;
 
     @GetMapping("/")
     public String sendSucceed() {
         Date date = new Date();
-        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
+        source.message().send(MessageBuilder.withPayload("Hello World..." + date)
                 .setHeader("routingKey", "login.user.succeed")
                 .setHeader("version", "1.0")
 
@@ -33,7 +33,7 @@ public class StreamSender {
     @GetMapping("/v2")
     public String sendHeader() {
         Date date = new Date();
-        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
+        source.message().send(MessageBuilder.withPayload("Hello World..." + date)
                 .setHeader("routingKey", "login.user.succeed")
                 .setHeader("version", "2.0")
                 .setHeader("x-delay", 5000)
@@ -44,7 +44,7 @@ public class StreamSender {
     @GetMapping("/failed")
     public String sendFailed() {
         Date date = new Date();
-        sender.message().send(MessageBuilder.withPayload("Hello World..." + date)
+        source.message().send(MessageBuilder.withPayload("Hello World..." + date)
                 .setHeader("routingKey", "login.user.failed")
                 .build());
         return "OK " + date;
