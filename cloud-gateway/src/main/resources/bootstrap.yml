@@ -33,9 +33,9 @@ spring:
             - name: AuthenticationFilter  # 身份认证
             - name: AuthorizationFilter   # 用户鉴权
             - StripPrefix=1 # 去掉前缀
-    sentinel:
-      transport:
-        dashboard: 127.0.0.1:8858
+#    sentinel:
+#      transport:
+#        dashboard: 127.0.0.1:8858
 
   redis:
     database: 0
@@ -71,6 +71,12 @@ dubbo:
   consumer:
     check: false
     loadbalance: "leastactive"
+  scan:
+    base-packages: fun.barryhome.cloud.provider   #指定 Dubbo 服务实现类的扫描基准包
+  protocols:
+    dubbo:
+      name: dubbo   #Dubbo 服务暴露的协议配置，其中子属性 name 为协议名称，port 为协议端口（ -1 表示自增端口，从 20880 开始）
+      port: -1
 
   registry:
     # 挂载到 Spring Cloud 注册中心

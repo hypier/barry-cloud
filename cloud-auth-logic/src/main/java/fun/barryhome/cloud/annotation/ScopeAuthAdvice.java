@@ -108,6 +108,10 @@ public class ScopeAuthAdvice {
             token = ParseSPEL.parseMethodKey(tokenKey, method, args, String.class);
         }
 
+        if (StringUtils.isEmpty(token)){
+            token = tokenKey;
+        }
+
         return token;
     }
 

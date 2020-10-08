@@ -1,11 +1,14 @@
 package fun.barryhome.cloud.controller;
 
-
 import fun.barryhome.cloud.annotation.ScopeAuth;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 
 /**
@@ -17,10 +20,18 @@ import java.util.Arrays;
 @RestController
 public class HomeController {
 
-    @ScopeAuth(scopes = {"#cities"}, token = "#request.getHeader(\"X-User-Name\")")
-    @GetMapping(value = "/query")
-    public String query(String[] cities, HttpServletRequest request) {
-        return Arrays.toString(cities);
+    @ScopeAuth(scopes = {"#user.cities"}, token = "request.getHeader(\"X-User-Name\")")
+    @PostMapping(value = "/query")
+    public String query(@RequestBody User user, HttpServletRequest request) {
+        return Arrays.toString(user.getCities());
+    }
+
+    @GetMapping(value = "/home")
+    public String home(HttpServletRequest request) throws UnsupportedEncodingException {
+        String userName = request.getHeader("X-User-Name");
+        String realName = URLDecoder.decode(request.getHeader("X-Real-Name"), "utf-8");
+
+        return String.format("userName: %s, realName: %s", userName, realName);
     }
 
 }

@@ -1,5 +1,6 @@
-package fun.barryhome.cloud;
+package fun.barryhome.cloud.auth;
 
+import fun.barryhome.cloud.AuthQuerySupplier;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -12,7 +13,7 @@ import java.util.Set;
  * Description:
  */
 @Component
-public class DefaultAuthQuerySupplier implements AuthQuerySupplier {
+public class RedisAuthQuerySupplier implements AuthQuerySupplier {
 
     /**
      * 查询范围
