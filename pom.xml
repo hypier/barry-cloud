@@ -14,6 +14,7 @@
         <module>cloud-provider</module>
         <module>cloud-stream</module>
         <module>cloud-auth-logic</module>
+        <module>cloud-order</module>
     </modules>
     <name>cloud</name>
     <description>Demo project for Spring Cloud</description>

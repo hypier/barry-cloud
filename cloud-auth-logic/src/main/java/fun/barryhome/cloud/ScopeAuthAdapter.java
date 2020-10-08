@@ -9,11 +9,11 @@ import java.util.Set;
  * @author barry
  * Description:
  */
-public class ScopeAuthenticationAdapter {
+public class ScopeAuthAdapter {
 
-    private final AuthenticationSupplier supplier;
+    private final AuthQuerySupplier supplier;
 
-    public ScopeAuthenticationAdapter(AuthenticationSupplier supplier) {
+    public ScopeAuthAdapter(AuthQuerySupplier supplier) {
         this.supplier = supplier;
     }
 
@@ -24,7 +24,7 @@ public class ScopeAuthenticationAdapter {
      * @return
      */
     public Set<String> identifyPermissionScope(String token, Set<String> requestScope) {
-        Set<String> authorizeScope = supplier.findScope(token);
+        Set<String> authorizeScope = supplier.queryScope(token);
 
         String ALL_SCOPE = "AUTH_ALL";
         String USER_ALL = "USER_ALL";

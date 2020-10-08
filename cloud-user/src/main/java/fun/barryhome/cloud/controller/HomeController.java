@@ -1,6 +1,5 @@
 package fun.barryhome.cloud.controller;
 
-import fun.barryhome.cloud.annotation.ScopeAuth;
 import fun.barryhome.cloud.convertor.UserConvertor;
 import fun.barryhome.cloud.domain.user.User;
 import fun.barryhome.cloud.infrastructure.repository.user.UserRepository;
@@ -34,14 +33,6 @@ public class HomeController implements UserWebProvider {
 
         return String.format("userName: %s, realName: %s", userName, realName);
     }
-
-
-    @ScopeAuth(scopes = {"#cities"}, token = "#request.getHeader(\"X-User-Name\")")
-    @GetMapping(value = "/query")
-    public String query(String[] cities, HttpServletRequest request) {
-        return "User Home !";
-    }
-
 
     @PostMapping(value = "/user")
     public String user() {

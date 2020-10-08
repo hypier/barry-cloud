@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: cloud-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+#    sentinel:
+#      transport:
+#        dashboard: 127.0.0.1:8858
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 11250
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  file:
+    name: target/${spring.application.name}.log

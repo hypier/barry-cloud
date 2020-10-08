@@ -31,7 +31,7 @@ public class PermissionRepositoryImpl implements PermissionRepository {
                 .name("hello")
                 .build());
         list.add(Permission.builder()
-                .uri("/user/query")
+                .uri("/order/query")
                 .method("GET")
                 .name("query")
                 .build());
@@ -61,7 +61,7 @@ public class PermissionRepositoryImpl implements PermissionRepository {
                 .name("user")
                 .build());
         list.add(Permission.builder()
-                .uri("/user/query")
+                .uri("/order/query")
                 .method("GET")
                 .name("query")
                 .build());

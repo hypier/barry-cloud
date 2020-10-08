@@ -12,17 +12,7 @@ import java.util.Set;
  * Description:
  */
 @Component
-public class DefaultAuthenticationSupplier implements AuthenticationSupplier {
-    /**
-     * 保存范围
-     *
-     * @param key
-     * @param values
-     */
-    @Override
-    public void importScope(String key, Set<String> values) {
-
-    }
+public class DefaultAuthQuerySupplier implements AuthQuerySupplier {
 
     /**
      * 查询范围
@@ -31,9 +21,9 @@ public class DefaultAuthenticationSupplier implements AuthenticationSupplier {
      * @return
      */
     @Override
-    public Set<String> findScope(String key) {
+    public Set<String> queryScope(String key) {
         Set<String> list = new HashSet<>();
-        list.add("AUTH_ALL");
+        list.add("abc");
         return list;
     }
 }

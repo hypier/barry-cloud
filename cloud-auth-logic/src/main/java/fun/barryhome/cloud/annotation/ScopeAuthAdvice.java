@@ -1,8 +1,8 @@
 package fun.barryhome.cloud.annotation;
 
 
-import fun.barryhome.cloud.AuthenticationSupplier;
-import fun.barryhome.cloud.ScopeAuthenticationAdapter;
+import fun.barryhome.cloud.AuthQuerySupplier;
+import fun.barryhome.cloud.ScopeAuthAdapter;
 import fun.barryhome.cloud.util.AccessDeniedException;
 import fun.barryhome.cloud.util.ParseSPEL;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -25,14 +25,14 @@ import java.util.Set;
  * Created on 2020/10/8 11:09 上午
  *
  * @author barry
- * Description: 权限存储器，可使用redis，DB保存
+ * Description:
  */
 @Aspect
 @Component
 public class ScopeAuthAdvice {
 
     @Autowired
-    private AuthenticationSupplier supplier;
+    private AuthQuerySupplier supplier;
 
     private final String SPEL_FLAG = "#";
 
@@ -73,7 +73,7 @@ public class ScopeAuthAdvice {
         // 获取请求范围
         Set<String> requestScope = getRequestScope(args, scope, methodSignature.getMethod());
 
-        ScopeAuthenticationAdapter adapter = new ScopeAuthenticationAdapter(supplier);
+        ScopeAuthAdapter adapter = new ScopeAuthAdapter(supplier);
         // 已授权范围
         Set<String> authorizedScope = adapter.identifyPermissionScope(authToken, requestScope);
 
