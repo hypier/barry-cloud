@@ -13,6 +13,7 @@
         <module>cloud-mq</module>
         <module>cloud-provider</module>
         <module>cloud-stream</module>
+        <module>cloud-auth-logic</module>
     </modules>
     <name>cloud</name>
     <description>Demo project for Spring Cloud</description>
