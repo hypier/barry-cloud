@@ -4,7 +4,7 @@ import fun.barryhome.cloud.provider.user.UserDTO;
 import fun.barryhome.cloud.provider.user.UserProvider;
 import fun.barryhome.cloud.provider.user.UserWebProvider;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class UserController {
 
-    @Reference
+    @DubboReference
     private UserProvider userProvider;
 
     @Autowired

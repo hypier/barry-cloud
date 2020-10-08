@@ -1,7 +1,7 @@
 package fun.barryhome.cloud.auth;
 
 import fun.barryhome.cloud.provider.permission.PermissionProvider;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 class SessionTest {
 
-    @Reference
+    @DubboReference
     private PermissionProvider permissionProvider;
     @Autowired
     private Session session;

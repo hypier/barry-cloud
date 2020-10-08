@@ -2,7 +2,7 @@ package fun.barryhome.cloud.application;
 
 import fun.barryhome.cloud.provider.user.UserDTO;
 import fun.barryhome.cloud.provider.user.UserProvider;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 class UserManagerTest {
 
-    @Reference
+    @DubboReference
     private UserProvider userProvider;
 
     @Test

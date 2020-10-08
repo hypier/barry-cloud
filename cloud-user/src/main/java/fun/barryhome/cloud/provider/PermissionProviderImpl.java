@@ -1,10 +1,10 @@
 package fun.barryhome.cloud.provider;
 
-import fun.barryhome.cloud.provider.permission.PermissionProvider;
-import fun.barryhome.cloud.provider.permission.PermissionDTO;
 import fun.barryhome.cloud.convertor.PermissionConvertor;
 import fun.barryhome.cloud.domain.permission.Permission;
 import fun.barryhome.cloud.infrastructure.repository.permission.PermissionRepository;
+import fun.barryhome.cloud.provider.permission.PermissionDTO;
+import fun.barryhome.cloud.provider.permission.PermissionProvider;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 

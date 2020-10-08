@@ -7,7 +7,7 @@ import fun.barryhome.cloud.provider.permission.PermissionDTO;
 import fun.barryhome.cloud.provider.permission.PermissionProvider;
 import fun.barryhome.cloud.provider.user.UserDTO;
 import fun.barryhome.cloud.provider.user.UserProvider;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,10 +30,10 @@ public class HelloController {
     @Autowired
     private Session session;
 
-    @Reference
+    @DubboReference
     private UserProvider userProvider;
 
-    @Reference
+    @DubboReference
     private PermissionProvider permissionProvider;
 
 
@@ -54,11 +54,12 @@ public class HelloController {
 
     /**
      * 用户登陆
+     *
      * @param userName
      * @param password
      * @return
      */
-    private LoginUser userLogin(String userName, String password){
+    private LoginUser userLogin(String userName, String password) {
         // 检查密码
         UserDTO user = userProvider.checkUser(userName, password);
 

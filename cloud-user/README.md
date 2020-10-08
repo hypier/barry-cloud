@@ -138,7 +138,7 @@ java.net.ConnectException: Connection refused (Connection refused)
     <version>0.0.1-SNAPSHOT</version>
     <scope>compile</scope>
 </dependency>
- <dependency>
+<dependency>
     <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-starter-dubbo</artifactId>
 </dependency>
@@ -154,7 +154,7 @@ import org.apache.dubbo.config.annotation.Reference;
 
 public class UserController {
 
-    @Reference
+    @DubboReference
     private UserProvider userProvider;
 
     @GetMapping(value = "/sessionUser")
