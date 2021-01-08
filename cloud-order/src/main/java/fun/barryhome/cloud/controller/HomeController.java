@@ -20,10 +20,10 @@ import java.util.Arrays;
 @RestController
 public class HomeController {
 
-    @ScopeAuth(scopes = {"#user.cities"}, token = "request.getHeader(\"X-User-Name\")")
+    @ScopeAuth(scopes = {"#orderDTO.cities"}, token = "#request.getHeader(\"X-User-Name\")")
     @PostMapping(value = "/query")
-    public String query(@RequestBody User user, HttpServletRequest request) {
-        return Arrays.toString(user.getCities());
+    public String query(@RequestBody OrderDTO orderDTO, HttpServletRequest request) {
+        return Arrays.toString(orderDTO.getCities());
     }
 
     @GetMapping(value = "/home")

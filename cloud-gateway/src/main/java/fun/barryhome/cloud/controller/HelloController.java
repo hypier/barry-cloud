@@ -9,14 +9,13 @@ import fun.barryhome.cloud.provider.user.UserDTO;
 import fun.barryhome.cloud.provider.user.UserProvider;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created on 2019-07-29 18:25
@@ -35,6 +34,9 @@ public class HelloController {
 
     @DubboReference
     private PermissionProvider permissionProvider;
+
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
 
     @GetMapping(value = "/hello")
@@ -75,10 +77,29 @@ public class HelloController {
 
         // 查询权限
         List<PermissionDTO> permissions = permissionProvider.findByUserName(userName);
-        // 保存用户权限
+        // 保存用户资源访问权限
         session.saveUserPermissions(userName, permissions);
 
+        // 保存用户数据权限
+        redisAuthStore(userName);
+
         return loginUser;
+    }
+
+    /**
+     * 构造数据权限样例数据
+     * @param userName
+     */
+    private void redisAuthStore(String userName){
+        Set<String> list = new HashSet<>();
+        list.add("cq");
+        list.add("cd");
+        list.add("cs");
+
+        String AUTH_USER_KEY = "auth:logic:user:%s";
+        String redisKey = String.format(AUTH_USER_KEY, userName);
+
+        redisTemplate.opsForList().leftPushAll(redisKey, list);
     }
 
 }

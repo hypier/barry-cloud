@@ -13,8 +13,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class OrderDTO {
 
-    private String userName;
+    /**
+     * 订单号
+     */
+    private String orderID;
+    /**
+     * 城市
+     */
     private String[] cities;
 }
