@@ -15,6 +15,8 @@
 
 [5. 使用Spring Cloud Stream玩转RabbitMQ，RocketMQ和Kafka](/cloud-stream)
 
+[6.SpringCloud 微服务实现数据权限控制](/cloud-auth-logic)
+
 ---
 
 使用SpringCloud技术栈搭建微服务集群，可以选择的组件比较多，由于有些组件已经闭源或停更，这里主要选用`spring-cloud-alibaba`作为我们的技术栈。
