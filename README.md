@@ -15,7 +15,7 @@
 
 [5. 使用Spring Cloud Stream玩转RabbitMQ，RocketMQ和Kafka](/cloud-stream)
 
-[6.SpringCloud 微服务实现数据权限控制](/cloud-auth-logic)
+[6. SpringCloud 微服务实现数据权限控制](/cloud-auth-logic)
 
 ---
 
